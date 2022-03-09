@@ -1,0 +1,23 @@
+//UNIV. ESPINOZA LAURA JOSE CARLOS
+//UNIV. NINA HUANCA CARLOS GABRIEL
+//ING. JUAN CARLOS DUCHEN.... este es el codigo del ejercicio #4 del laboratorio #2 sistema de ecuaciones 2x2 
+#include <iostream>   
+using namespace std;  
+float A, B, C, D, E, F, x, y;  //declaración de las variables a utilizar 
+int main()  
+{   
+cout<<"sistema de ecuaciones 2x2 a resolver: "<<endl;   
+cout<< "Ax+By=C"<<endl ; //Primera ecuación en la cual se despejara Y   
+cout<<"Dx+Ey=F"<<endl ;  //segunda ecuación en la cual se despejara X y se sustituirá Y y quedara en función de X para encontrar el valor de esta misma variable (X)   
+cout<<"INSERTE LOS VALORES PARA CADA VARIABLE XD  "<<" : "<<endl;      
+cout<<"INSERTE LA VARIABLE A"<<":"; cin>>A; //ingresar  el valor que tendrá A en la primera ecuación     
+cout<<"INSERTE LA VARIABLE B"<<":"; cin>>B; //ingresar  el valor que tendrá B en la primera ecuación     
+cout<<"INSERTE LA VARIABLE C"<<":"; cin>>C; //ingresar  el valor que tendrá C en la primera ecuación   
+cout<<"INSERTE LA VARIABLE D"<<":"; cin>>D; //ingresar  el valor que tendrá D en la segunda ecuación 
+cout<<"INSERTE LA VARIABLE E"<<":"; cin>>E; //ingresar  el valor que tendrá E en la segunda ecuación 
+cout<<"INSERTE LA VARIABLE F"<<":"; cin>>F; //ingresar  el valor que tendra F en la segunda ecuación 
+y=((C*D)-(F*A))/((D*B)-(A*E)); //Y es el resultado de despejarla de las 2 ecuaciones, por el metodo de suma y resta de sistemas de ecuaciones 2x2   
+cout<<"valor de y="<<y<<endl; //resultado de la operación anterior 
+x=(C-(B*y))/A; //es el resultado de despejar x en la primera ecuación y de sustituir el valor de Y anterior para que todo quede en función de X y poder obtener su valor 
+cout<<"valor de x="<<x<<endl; //resultado de la operación anterior 
+}
