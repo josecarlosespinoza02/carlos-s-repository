@@ -1,0 +1,114 @@
+/*UNIV. ESPINOZA LAURA JOSE CARLOS
+UNIV. NINA HUANCA CARLOS GABRIEL
+ING. JUAN CARLOS DUCHEN.... este es el codigo del ejercicio #2 del laboratorio #2 "Generar matrices enésimas de Vandermonde  y calcular el determinante"*/
+
+#include <cstdlib>
+#include <iostream>
+ 
+using namespace std;
+ 
+void MostrarMatriz(int** Matriz,unsigned int MAX);
+void Leer_matriz(int** a,unsigned int MAX);
+int CalcularDeterminante(int** Matriz,unsigned int MAX);
+ 
+int main(int argc, char *argv[])
+{
+    int orden;
+ 
+    while(1)
+    {
+        cout<<"INDICA EL ORDEN DE LA MATRIZ QUE DESEAS CALCULAR: ";
+        cin>>orden;
+ 
+        if (orden < 2)
+            orden = 2;
+ 
+        cout<<endl<<"DIGITA LOS ELEMENTOS DE LA MATRIZ A CALCULAR: "<<endl<<endl;
+ 
+        int** Matriz;
+        Matriz = new int*[orden];
+ 
+        for (int i = 0; i<orden; i++)
+            Matriz[i] = new int[orden];
+ 
+        Leer_matriz(Matriz,orden);
+        cout<<endl<<endl<<endl;
+        MostrarMatriz(Matriz,orden);
+        cout<<endl<<endl<<endl;
+        cout<<"EL VALOR DE LA DETERMINANTE ES ... : "<<CalcularDeterminante(Matriz,orden);
+        cout<<endl<<endl<<endl;
+        system("PAUSE");
+        system("PAUSE");
+        system("CLS");
+    }
+    return EXIT_SUCCESS;
+}
+ 
+int CalcularDeterminante(int** Matriz,unsigned int MAX)
+{
+ 
+    if (MAX == 2)
+    {
+        return (Matriz[0][0]*Matriz[1][1] - Matriz[0][1]*Matriz[1][0]);
+    }
+    else
+    {
+        int Actual = 0;
+        int k = 0;
+        int Numero = 0;
+        short Multriplicador;
+        int** Buffer; // Creo una nueva matriz para hacer los adjuntos
+        Buffer = new int*[MAX-1];
+
+        for (int i = 0; i<(MAX-1); i++)
+            Buffer[i] = new int[MAX-1];
+ 
+        for (int l = 0; l < MAX; l++) // Desarrollo por filas
+        {
+            for (int j = 1; j < MAX; j++) // Creo una nueva matriz adjunta
+            {
+                for (int i = 0; i < MAX; i++)
+                {
+                    if (i != l)
+                    {
+                        Buffer[k][j-1] = Matriz[i][j];
+                        k++;
+                    }
+                }
+                k = 0;
+            }
+ 
+            if ( l % 2 != 0)
+                Multriplicador = -1;
+            else
+                Multriplicador = 1;
+            Numero += (Matriz[l][0]*CalcularDeterminante(Buffer,MAX-1)*Multriplicador);
+        }
+        return Numero;
+    }
+}
+ 
+void MostrarMatriz(int** Matriz,unsigned int MAX)
+{
+    for (int j = 0; j < MAX; j++)
+    {
+        cout<<endl<<" (  ";
+        for (int i = 0; i < MAX; i++)
+            cout<<Matriz[i][j]<<"  ";
+ 
+ 
+        cout<<") ";
+    }
+}
+ 
+void Leer_matriz(int** a,unsigned int MAX)
+{
+    int i,j;
+ 
+    for (j = 0; j < MAX; j++)
+        for (i = 0; i < MAX; i++)
+        {
+            cout<<"Introduce el numero para la posicion ("<<i<<","<<j<<") "<<endl;
+            cin>>a[i][j];
+        }
+}
