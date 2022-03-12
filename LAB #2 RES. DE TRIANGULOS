@@ -1,0 +1,277 @@
+#include <iostream>
+#include <stdio.h>
+#include <windows.h>
+#include <conio.h>
+#include <math.h>
+#include <cmath>
+#include <stdlib.h>
+
+using namespace std;
+int main(){
+	int k;
+	float Area, S;
+	int aux;
+	char var,v1;
+	const double pi = std::acos(-1);
+	do{
+		cout<<"\n\t****POR MEDIO DE TEORIA DE SENOS, COSENOS Y TRANGENTES**\n";
+		cout<<"\n\t\t\t*** CALCULADORA DE TRIANGULOS ***"<<endl;
+		cout<<"\t\t\t\t      gamma  *              \n";
+		cout<<"\t\t\t\t            *|*             \n";
+		cout<<"\t\t\t\t           **|**            \n";
+		cout<<"\t\t\t\t          ***|***           \n";
+		cout<<"\t\t\t\t     A   ****|****   B      \n";
+		cout<<"\t\t\t\t        *****|*****         \n";
+		cout<<"\t\t\t\t       ******|******        \n";
+		cout<<"\t\t\t\t      *******|*******       \n";
+		cout<<"\t\t\t\tbeta ********|******** alpha  \n";
+		cout<<"\t\t\t\t          C              \n";
+		cout<<"\n ESCOJA UNA OPCIÓN.\n"<<endl<<endl;
+		cout<<"\t\t 1. TRES LADOS."<<endl;
+		cout<<"\t\t 2. TRES ANGULOS."<<endl;
+		cout<<"\t\t 3. DOS LADOS Y EL ANGULO ENTRE ELLOS."<<endl;
+		cout<<"\t\t 4. DOS LADOS Y UN ANGULO OPUESTO DE LOS MISMOS"<<endl;
+		cout<<"\t\t 5. UN LADO, SU ANGULO OPUESTO Y UNO DE SUS ADYACENTES."<<endl;
+		cout<<"\t\t 6. UN LADO Y SUS DOS ANGULOS ADYACENTES."<<endl;
+		cout<<"\t\t 7. SALIR"<<endl;
+		cout<<"\n PRESIONE EL NUMERO DE LA OPCION A REALIZAR: ";
+		cin>>k;
+		system("cls");
+		switch(k){
+			case 1:
+				float a,b,c,L[3],L1[3],alpha,beta,gamma;
+	            double A,B,C,AF,BF,CF;
+				do{
+					cout<<"\n\tDIGITE LOS VALORES DE LOS ANGULOS: "<<endl;
+					cout<<"\t\tA= ";cin>>L[0];
+					cout<<"\t\tB= ";cin>>L[1];
+					cout<<"\t\tC= ";cin>>L[2];
+					if(L[0]>0,L[1]>0,L[2]>0){
+						S=(L[0]+L[1]+L[2])/2;
+						Area=sqrt(S*(S-L[0])*(S-L[1])*(S-L[2]));
+						for(int i=0;i<3;i++){
+							L1[i]=L[i];
+						}
+						a=L1[0];
+						b=L1[1];
+						c=L1[2];
+						for(int i=0;i<3;++i){
+							for(int j=0;j<3;++j){
+								if(L[j]>L[j+1]){
+									aux=L[j];
+									L[j]=L[j+1];
+									L[j+1]=aux;
+								}
+							}
+						}
+						if(L[3]<L[2]+L[1]){
+							cout<<"\n  LOS ANGULOS SON: "<<endl<<endl;
+							A=(pow(b,2)+pow(c,2)-pow(a,2))/(2*b*c);
+							alpha=alpha+acos(A);
+							cout<<"\tALPHA= "<<(alpha*180)/pi<<endl;
+							B=(pow(a,2)+pow(c,2)-pow(b,2))/(2*a*c);
+							beta=beta+acos(B);
+							cout<<"\tBETA= "<<(beta*180)/pi<<endl;
+						}
+						C=(pow(b,2)+pow(a,2)-pow(c,2))/(2*b*a);
+						gamma=gamma+acos(C);
+						cout<<"\tGAMMA= "<<(gamma*180)/pi<<endl;
+						cout<<"\n EL AREA ES: "<<Area<<" [u^2]"<<endl;
+						cout<<"\n\t\tQUIERE REGRESAR AL MENU?"<<endl;//PREGUNTA
+						cout<<"  Escriba Si (s) o presione otra tecla en caso contrario"<<endl;
+						cin>>var;
+						system("cls");
+						break;
+					}else{
+						cout<<"\n\tLA SUMA DE LOS LADOS DEBE SER MAYOR A LA LONGITUD DEL TERCER LADO"<<endl;
+						cout<<"\tREVISE SUS DATOS ."<<endl<<endl;
+						cout<<"\t\t¿DESEA INTENTAR CON NUEVOS DATOS?"<<endl; //PREGUNTA
+						cout<<"\tIngrese Si (s) o presione otra tecla en caso contrario"<<endl;
+						cin>>v1;
+						system("cls");
+					}
+				}while(v1=='s');
+				break;
+			case 2:
+				cout<<"\n\tDEBE INGRESAR EL DATO DE UN LADO PARA PODER REALIZAR EL CALCULO"<<endl<<endl;
+				cout<<"\t\t¿QUIERE REGRESAR AL MENU?"<<endl;//PREGUNTA
+				cout<<"  Escriba Si (s) o presione otra tecla en caso contrario"<<endl;
+				cin>>var;
+				system("cls");
+				break;
+			case 3:
+				float a4,b4,c4,alpha4,beta4,gamma4;
+				double A4,B4,C4,AF4,BF4,CF4;
+				do{
+					cout<<"\n\tDIGITE LOS VALORES DE: "<<endl;
+					cout<<"\t\tA= "; cin>>a4;
+					cout<<"\t\tB= "; cin>>b4;
+					cout<<"\t\tGAMMA= "; cin>>gamma4;
+					if(a4>0,b4>0,gamma4>0){
+						Area=(a4*b4*std::sin(pi*gamma4/180)/2);c4=sqrt(pow(a4,2)+pow(b4,2)-(2*a4*b4*cos((gamma4*pi)/180)));
+						cout<<"\n\tEL OTRO LADO Y LOS OTROS ANGULOS SON: "<<endl;
+						cout<<"\t\tC= "<<c4<<"[u]"<<endl;
+						A4=sin((gamma4*pi)/180);
+						AF4=(asin((a4*A4)/c4)*180)/pi;
+						alpha4=alpha4+AF4;
+						cout<<"\t\tALPHA= "<<alpha4<<"[grados]"<<endl;
+						beta4=beta4+180-alpha4-gamma4;
+						cout<<"\t\tBETA= "<<beta4<<"[grados]"<<endl<<endl;
+						cout<<"\n EL AREA ES: "<<Area<<" [u^2]"<<endl;
+						cout<<"\n\t\tQUIERE REGRESAR AL MENU?"<<endl;//PREGUNTA
+						cout<<"  Escriba Si (s) o presione otra tecla en caso contrario"<<endl;
+						cin>>var;
+						system("cls");
+						break;
+					}else{
+						cout<<"\tLOS VALORES INGRESADOS DEBEN SER MAYOR A 0, que"<<endl;
+						cout<<"\t el angulo sea menor a 180 grados y sus datos tengan coherencia "<<endl;
+						cout<<"\t con su triangulo."<<endl<<endl;
+						cout<<"\t\t¿Desea ingresar nuevos datos?"<<endl;
+						cout<<" Escriba Si (s) o presione otra tecla en caso contrario"<<endl;
+						cin>>v1;
+						system("cls");
+					}
+				}while(v1=='s');
+				break;
+			case 4:
+				float a2,b2,c2,alpha2,beta2,gamma2;
+				long double m2,n2,D2;
+				double x2;
+				double A2,B2,C2,AF2,BF2,CF2;
+				do{
+					cout<<"\n\tIngrese los valores de: "<<endl;
+					cout<<"\t\tA= "; cin>>a2;
+					cout<<"\t\tB= "; cin>>b2;
+					cout<<"\t\tALPHA= "; cin>>alpha2;
+					if(a2>0,b2>0,alpha2>0){
+						m2=-2*b2*cos((alpha2*pi)/180);
+						n2=pow(b2,2)-pow(a2,2);
+						D2=pow(m2,2)-4*n2;
+						if(D2>=0){
+							x2=(-m2+sqrt(D2))/(2);
+							c2=c2+x2;
+							cout<<"\n\tEl lado y los otros dos angulos del triangulo son: "<<endl;
+							cout<<"\t\tC= "<<c2<<"[u]"<<endl;
+							B2=sin((alpha2*pi)/180);
+							BF2=(asin((b2*B2)/a2)*180)/pi;
+							beta2=beta2+BF2;
+							cout<<"\t\tBETA= "<<beta2<<"[grados]"<<endl;
+							gamma2=gamma2+180-alpha2-beta2;
+							cout<<"\t\tGAMMA= "<<gamma2<<"[grados]"<<endl<<endl;
+							cout<<"\t\t¿Desea regresar al menu?"<<endl;//PREGUNTA
+							cout<<"  Escriba Si (s) o presione otra tecla en caso contrario"<<endl;
+							cin>>var;
+							system("cls");
+							break;
+						}else{
+							cout<<"  **Lado A insuficiente para formar un triangulo*"<<endl;
+							cout<<"\t\t¿Desea ingresar nuevos datos?"<<endl;
+							cout<<" Escriba Si (s) o presione otra tecla en caso contrario"<<endl;
+							cin>>v1;
+							system("cls");
+						}
+					}else{
+						cout<<"\tVerifique que los valores ingresados seran mayores a cero, que"<<endl;
+						cout<<"\t el angulo sea menor a 180 grados y sus datos tengan coherencia "<<endl;
+						cout<<"\t con su triangulo."<<endl<<endl;
+						cout<<"\t\t¿Desea ingresar nuevos datos?"<<endl;
+						cout<<" Escriba Si (s) o presione otra tecla en caso contrario"<<endl;
+						cin>>v1;
+						system("cls");
+					}
+				}while(v1=='s');
+				break;
+			case 5:
+				float a3,b3,c3,alpha3,beta3,gamma3;
+				long double m3,n3,D3;
+				double x3;
+				double A3,B3,C3,AF3,BF3,CF3;
+				do{
+					cout<<"\n\tIngrese los valores de: "<<endl;
+					cout<<"\t\tA= "; cin>>a3;
+					cout<<"\t\tALPHA= "; cin>>alpha3;
+					cout<<"\t\tGAMMA= "; cin>>gamma3;
+					if(a3>0,alpha3>0,gamma3>0){
+						if(alpha3+gamma3<170){
+							c3=(a3*sin((gamma3*pi)/180))/sin((alpha3*pi)/180);
+							beta3=180-alpha3-gamma3;
+							b3=sqrt(pow(a3,2)+pow(c3,2)-(2*a3*c3*cos((beta3*pi)/180)));
+							cout<<"\n\tLos otros dos lados y el angulo del triangulo son: "<<endl;
+							cout<<"\t\tB= "<<b3<<"[u]"<<endl;
+							cout<<"\t\tC= "<<c3<<"[u]"<<endl;
+							cout<<"\t\tBETA= "<<beta3<<"[grados]"<<endl;
+							cout<<"\t\t¿Desea regresar al menu?"<<endl;
+							cout<<"  Escriba Si (s) o presione otra tecla en caso contrario"<<endl;
+							cin>>var;
+							system("cls");
+							break;
+						}else{
+							cout<<"  Los angulos son demasiado grandes para formar un triangulo,"<<endl;
+							cout<<"  revise sus datos y vuelva a ingresalos por favor."<<endl;
+							cout<<"\t\t¿Desea ingresar nuevos datos?"<<endl;
+							cout<<"  Escriba Si (s) o presione otra tecla en caso contrario"<<endl;
+							cin>>v1;
+							system("cls");
+						}
+					}else{
+						cout<<"\tVerifique que los valores ingresados seran mayores a cero, que"<<endl;
+						cout<<"\t el angulo sea menor a 180 grados y sus datos tengan coherencia "<<endl;
+						cout<<"\t con su triangulo."<<endl<<endl;
+						cout<<"\t\t¿Desea ingresar nuevos datos?"<<endl;
+						cout<<" Escriba Si (s) o presione otra tecla en caso contrario"<<endl;
+						cin>>v1;system("cls");
+					}
+				}while(v1=='s');
+				break;
+			case 6:
+				float a5,b5,c5,alpha5,beta5,gamma5;
+				long double m5,n5,D5;
+				double x5;
+				double A5,B5,C5,AF5,BF5,CF5;
+				do{
+					cout<<"\n\tIngrese los valores de: "<<endl;
+					cout<<"\t\tA= "; cin>>a5;
+					cout<<"\t\tBETA= "; cin>>beta5;
+					cout<<"\t\tGAMMA= "; cin>>gamma5;
+					if(a5>0,beta5>0,gamma5>0){
+						Area=(a5*a5*std::sin(pi*beta5/180)*std::sin(pi*gamma5/180))/(2*std::sin(pi*(180-beta5-gamma5)/180));
+						if(alpha3+gamma3<170){
+							alpha5=180-beta5-gamma5;
+							c5=(a5*sin((gamma5*pi)/180))/sin((alpha5*pi)/180);
+							b5=sqrt(pow(a5,2)+pow(c5,2)-(2*a5*c5*cos((beta5*pi)/180)));
+							cout<<"\n\tLos otros dos lados y el angulo del triangulo son: "<<endl;
+							cout<<"\t\tB= "<<b5<<"[u]"<<endl;
+							cout<<"\t\tC= "<<c5<<"[u]"<<endl;
+							cout<<"\t\tALPHA= "<<alpha5<<"[grados]"<<endl;
+							cout<<"\n El Area sera: "<<Area<<" [u^2]"<<endl;
+							cout<<"\n\t\tDesea regresar al menu?"<<endl;
+							cout<<"  Escriba Si (s) o presione otra tecla en caso contrario"<<endl;
+							cin>>var;
+							system("cls");
+							break;
+						}else{
+							
+							cout<<"  Los angulos son demasiado grandes para formar un triangulo,"<<endl;
+							cout<<"  revise sus datos y vuelva a ingresalos por favor."<<endl;
+							cout<<"\t\t¿Desea ingresar nuevos datos?"<<endl;
+							cout<<"  Escriba Si (s) o presione otra tecla en caso contrario"<<endl;
+							cin>>v1;
+							system("cls");
+						}
+					}else{
+						cout<<"\tVerifique que los valores ingresados seran mayores a cero, que"<<endl;
+						cout<<"\t el angulo sea menor a 180 grados y sus datos tengan coherencia "<<endl;
+						cout<<"\t con su triangulo."<<endl<<endl;
+						cout<<"\t\t¿Desea ingresar nuevos datos?"<<endl;
+						cout<<" Escriba Si (s) o presione otra tecla en caso contrario"<<endl;
+						cin>>v1;
+						system("cls");
+		            }
+				}while(v1=='s');
+				break;
+			case 7: cout<<"\n\t\t Gracias! Hasta pronto!"<<endl; return 0;
+		default:break;
+		}
+	}while(var=='s',k!=6);
+}
