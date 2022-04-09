@@ -1,0 +1,36 @@
+/*USANDO PUNTEROS VERIFICAR SI UN NUMERO ES PAR O IMPAR*/
+#include <iostream>
+#include <conio.h>
+#include <stdlib.h>
+using namespace std;
+
+void puntero();
+
+int main(){
+	system ("color e0");
+	puntero();
+	
+	system ("pause");
+	getch();
+	return 0;
+}
+void puntero (){
+	
+		cout<<"\n\n\n\t\tGRACIAS POR USAR NUESTRO PROGRAMA!!!!\n"<<endl;
+		cout<<"\t\tEsperamos haber sido utiles\n\n"<<endl;
+		cout<<"\t---JOSE CARLOS ESPINOZA LAURA---\n"<<endl;
+		cout<<"\t---CARLOS GABRIEL NINA HUANCA-----\n\n\n"<<endl;
+		cout<<"\n\n\n\t\tEJEMPLO DE PUNTEROS\n"<<endl;
+	int numero, *direccion_numero;
+	cout<<"digite un numero:"; cin>>numero;
+	direccion_numero=&numero;
+	
+	if(*direccion_numero%2==0){
+		cout<<"el numero dado  "<<*direccion_numero<<"  es par"<<endl;
+		cout<<"posicion:  "<<direccion_numero<<endl;
+	}
+	else{
+		cout<<"el numero "<<*direccion_numero<<"  es impar"<<endl;
+		cout<<"posicion:  "<<direccion_numero<<endl;
+	}
+}
