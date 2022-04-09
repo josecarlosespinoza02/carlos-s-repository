@@ -1,0 +1,144 @@
+#include <iostream>
+using namespace std;
+
+ 
+struct nodo{
+    int nro;
+    struct nodo *sgte;
+};
+ 
+typedef nodo *ptrPila;   // creando nodo tipo puntero( tipo de dato )
+ 
+/*                        Apilar elemento      
+------------------------------------------------------------------------*/
+void push( ptrPila &p, int valor )
+{
+     ptrPila aux;
+     aux = new(struct nodo);  // apuntamos al nuevo nodo creado
+     aux->nro = valor;
+     
+     aux->sgte = p ;
+     p = aux ;
+}
+ 
+/*                Desapilar elemento(devuelve elemento)      
+------------------------------------------------------------------------*/
+int pop( ptrPila &p )
+{
+     int num ;
+     ptrPila aux;
+     
+     aux = p ;
+     num = aux->nro;   // asignamos el primer vamor de la pila
+     
+     p = aux->sgte ;
+     delete(aux);
+     
+     return num;
+}
+ 
+/*                     Muestra elementos de la pila      
+------------------------------------------------------------------------*/
+void mostrar_pila( ptrPila p )
+{
+     ptrPila aux;
+     aux = p;     // apunta al inicio de la lista
+     
+     while( aux !=NULL )
+     {
+            cout<<"\t"<< aux->nro <<endl;
+            aux = aux->sgte;
+     }    
+}
+ 
+/*                Eliminar todos los elementos de la pila      
+------------------------------------------------------------------------*/
+void destruir_pila( ptrPila &p)
+{
+     ptrPila aux;
+     
+     while( p != NULL)
+     {
+           aux = p;
+           p = aux->sgte;
+           delete(aux);
+     }
+}
+ 
+/*                        Menu de opciones    
+------------------------------------------------------------------------*/
+void menu()
+{
+	cout<<"\n\n\n\t\tGRACIAS POR USAR NUESTRO PROGRAMA!!!!\n"<<endl;
+	cout<<"\t\tEsperamos haber sido utiles\n\n"<<endl;
+	cout<<"\t---JOSE CARLOS ESPINOZA LAURA---\n"<<endl;
+	cout<<"\t---CARLOS GABRIEL NINA HUANCA-----\n\n\n"<<endl;
+		
+    cout<<"\n\t IMPLEMENTACION DE PILAS \n\n";
+    cout<<" 1. AGREGAR VALOR A PILA                              "<<endl;
+    cout<<" 2. QUITAR VALOR A PILA                            "<<endl;
+    cout<<" 3. MOSTRAR PILA                         "<<endl;
+    cout<<" 4. DESTRUIR PILA                         "<<endl;
+    cout<<" 5. SALIR                                 "<<endl;
+ 
+    cout<<"\n INGRESE OPCION: ";
+}
+ 
+/*                        Funcion Principal        
+------------------------------------------------------------------------*/
+int main()
+{
+    ptrPila p = NULL;  // creando pila
+    int dato;
+    int op;
+    int x ; // numero que devuelve la funcon pop
+   
+    system("color e0");
+ 
+    do
+    {
+        menu();  cin>> op;
+ 
+        switch(op)
+        {
+            case 1:
+ 
+                 cout<< "\n NUMERO A AGREGAR A LA PILA: "; cin>> dato;
+                 push( p, dato );
+                 cout<<"\n\n\t\tNUMERO " << dato << " AGREGADO A LA PILA...\n\n";
+            break;
+ 
+ 
+            case 2:
+ 
+                 x = pop( p );
+                 cout<<"\n\n\t\tNUMERO "<< x <<" QUITADO DE LA PILA...\n\n";
+            break;
+                 
+ 
+            case 3:
+ 
+                 cout << "\n\n MOSTRANDO PILA\n\n";
+                 if(p!=NULL)
+                    mostrar_pila( p );
+                 else
+                    cout<<"\n\n\tPILA VACIA..!"<<endl;
+            break;
+ 
+ 
+            case 4:
+ 
+                 destruir_pila( p );
+                 cout<<"\n\n\t\tPILA ELIMIMINADA...\n\n";
+            break;
+           
+         }
+ 
+        cout<<endl<<endl;
+        system("pause");  system("cls");
+ 
+    }while(op!=5);
+   
+   
+    return 0;
+}
